@@ -10,6 +10,7 @@ import {
   Select,
   SelectChangeEvent,
   TextField,
+  Tooltip,
 } from "@mui/material";
 import { useSnackbar } from "notistack";
 import { useEffect, useState } from "react";
@@ -193,17 +194,18 @@ const DataSourcePage = () => {
                 >
                   Edit
                 </Button> */}
-                <Fab
-                  size="medium"
-                  color="primary"
-                  aria-label="edit"
-                  style={{ marginLeft: "-100px" }}
-                  disabled={loading}
-                  onClick={() => setEnabled(true)}
-                >
-                  <EditIcon />
-                </Fab>
-
+                <Tooltip title="Edit" arrow>
+                  <Fab
+                    size="medium"
+                    color="primary"
+                    aria-label="edit"
+                    style={{ marginLeft: "-100px" }}
+                    disabled={loading}
+                    onClick={() => setEnabled(true)}
+                  >
+                    <EditIcon />
+                  </Fab>
+                </Tooltip>
                 {/* <Button
                   variant="contained"
                   color="error"
@@ -212,16 +214,18 @@ const DataSourcePage = () => {
                 >
                   Remove
                 </Button> */}
-                <Fab
-                  size="medium"
-                  color="error"
-                  aria-label="remove"
-                  disabled={loading}
-                  style={{ marginRight: "-100px" }}
-                  onClick={removeDataSource}
-                >
-                  <RemoveIcon />
-                </Fab>
+                <Tooltip title="Remove" arrow>
+                  <Fab
+                    size="medium"
+                    color="error"
+                    aria-label="remove"
+                    disabled={loading}
+                    style={{ marginRight: "-100px" }}
+                    onClick={removeDataSource}
+                  >
+                    <RemoveIcon />
+                  </Fab>
+                </Tooltip>
               </div>
             )}
             <div className="pad20">
@@ -352,16 +356,18 @@ const DataSourcePage = () => {
               >
                 Save
               </Button> */}
-              <Fab
-                size="medium"
-                color="primary"
-                aria-label="save"
-                className="saveBtn"
-                disabled={loading || !enabled}
-                onClick={addDataSource}
-              >
-                <SaveIcon />
-              </Fab>
+              <Tooltip title="Save" arrow>
+                <Fab
+                  size="medium"
+                  color="primary"
+                  aria-label="save"
+                  className="saveBtn"
+                  disabled={loading || !enabled}
+                  onClick={addDataSource}
+                >
+                  <SaveIcon />
+                </Fab>
+              </Tooltip>
               {/* {loading && (
                 <CircularProgress
                   size={50}

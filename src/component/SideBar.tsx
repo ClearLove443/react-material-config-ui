@@ -1,5 +1,5 @@
 import AddIcon from "@mui/icons-material/Add";
-import { Button, Fab } from "@mui/material";
+import { Button, Fab, Tooltip } from "@mui/material";
 import { SimpleTreeView } from "@mui/x-tree-view/SimpleTreeView";
 import { TreeItem } from "@mui/x-tree-view/TreeItem";
 import { Link, useNavigate } from "react-router-dom";
@@ -33,15 +33,17 @@ const SideBar = () => {
                   >
                     Add
                   </Button> */}
-                  <Fab
-                    color="primary"
-                    aria-label="add"
-                    onClick={(event) =>
-                      handleNavigate(event, "/data-source/add")
-                    }
-                  >
-                    <AddIcon />
-                  </Fab>
+                  <Tooltip title="Add" arrow>
+                    <Fab
+                      color="primary"
+                      aria-label="add"
+                      onClick={(event) =>
+                        handleNavigate(event, "/data-source/add")
+                      }
+                    >
+                      <AddIcon />
+                    </Fab>
+                  </Tooltip>
                 </div>
               }
             >
