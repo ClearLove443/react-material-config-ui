@@ -52,12 +52,13 @@ const DataSourcePage = () => {
       const res = await getAllDatasource();
       const datasources = res.data;
       setDataSources(datasources);
+      setEnabled(false);
       console.log("数据源添加成功:", response.data);
-      const message = "data source added successfully";
+      const message = "Data source added successfully";
       enqueueSnackbar(message, { variant: "success" });
     } catch (error) {
       console.error("添加数据源失败:", error);
-      const message = "data source added failed";
+      const message = "Data source added failed";
       enqueueSnackbar(message, { variant: "error" });
     } finally {
       setLoading(false);
@@ -72,10 +73,10 @@ const DataSourcePage = () => {
       const datasources = res.data;
       setDataSources(datasources);
       console.log("data source removed successfully");
-      const message = "data source removed successfully";
+      const message = "Data source removed successfully";
       enqueueSnackbar(message, { variant: "success" });
     } catch (error) {
-      const message = "data source removed failed";
+      const message = "Data source removed failed";
       enqueueSnackbar(message, { variant: "error" });
     } finally {
       setLoading(false);
@@ -197,6 +198,7 @@ const DataSourcePage = () => {
                   color="primary"
                   aria-label="edit"
                   style={{ marginLeft: "-100px" }}
+                  disabled={loading}
                   onClick={() => setEnabled(true)}
                 >
                   <EditIcon />
