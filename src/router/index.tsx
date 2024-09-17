@@ -1,10 +1,9 @@
 import type { RouteObject } from "react-router-dom";
 import Layout from "../component/Layout";
-import CHUBCustomer from "../page/CHUBCustomer";
 import DataSourceTablePage from "../page/DataSouceTablePage";
 import DataSourcePage from "../page/DataSourcePage";
 import HomePage from "../page/HomePage";
-import PBCustomer from "../page/PBCustomer";
+import FullFeaturedCrudGrid from "../page/PBCustomer2";
 
 // const authRoutes: RouteObject = {
 //   path: "*",
@@ -60,11 +59,11 @@ const normalRoutes: RouteObject = {
     },
     {
       path: "nam-pb/add",
-      element: <PBCustomer />,
+      element: <FullFeaturedCrudGrid />,
     },
     {
       path: "nam-chub/add",
-      element: <CHUBCustomer />,
+      element: <FullFeaturedCrudGrid />,
     },
     // {
     //   path: "profile",
