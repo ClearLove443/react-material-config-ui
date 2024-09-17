@@ -1,8 +1,7 @@
 import express from "express";
 import { DOMAIN, PORT } from "./config.js";
 
-import { MongoClient } from "mongodb";
-
+import { MongoClient, ObjectId } from "mongodb";
 const uri =
   "mongodb+srv://admin:GKuI6Qi66ZiS4xEw@cluster0.uhkgaqs.mongodb.net/";
 const client = new MongoClient(uri);
@@ -67,6 +66,50 @@ app.delete("/api/datasource/:uuid?", async (req, res) => {
   const uuid = req.params.uuid;
   const data = await db.collection("datasource").deleteOne({ uuid: uuid });
   res.json(data);
+});
+
+app.get("/api/customer", async (req, res) => {
+  const data = await db
+    .collection("customer")
+    .find(
+      {},
+      {
+        sort: {
+          _id: -1,
+        },
+        projection: {
+          _id: 0,
+          id: "$_id",
+          firstName: 1,
+          lastName: 1,
+          email: 1,
+          state: 1,
+        },
+      }
+    )
+    .toArray();
+  // console.log(data);
+  res.json({ meta: { totalRowCount: data.length }, data });
+});
+
+app.post("/api/customer", (req, res) => {
+  db.collection("customer").insertOne(req.body);
+  res.send("Upsert successful");
+});
+
+app.put("/api/customer/:id", (req, res) => {
+  const id = req.params.id + "";
+  db.collection("customer").updateOne(
+    { _id: new ObjectId(id) },
+    { $set: req.body }
+  );
+  res.send("Update successful");
+});
+
+app.delete("/api/customer/:id", (req, res) => {
+  const id = req.params.id + "";
+  db.collection("customer").deleteOne({ _id: new ObjectId(id) });
+  res.send("Delete successful");
 });
 
 // app.use("/", AppRoutes);
